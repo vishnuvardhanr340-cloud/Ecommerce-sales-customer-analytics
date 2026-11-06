@@ -281,6 +281,8 @@ The final Power BI dashboard is designed around four major business areas.
 
 ## Page 1 — Executive Overview
 
+![Executive Overview dashboard page](screenshots/01_executive_overview.png)
+
 Key metrics:
 
 - Revenue
@@ -304,6 +306,8 @@ Visuals:
 
 ## Page 2 — Sales & Product Analytics
 
+![Sales and Product Analytics dashboard page](screenshots/02_sales_products_analytics.png)
+
 Analysis includes:
 
 - Category revenue
@@ -317,6 +321,8 @@ Analysis includes:
 
 ## Page 3 — Customer Analytics
 
+![Customer Analytics dashboard page](screenshots/03_customer_analytics.png)
+
 Analysis includes:
 
 - Customer segments
@@ -329,6 +335,8 @@ Analysis includes:
 ---
 
 ## Page 4 — Marketing & Operations
+
+![Marketing and Operations Analytics dashboard page](screenshots/04_marketing_operations.png)
 
 Analysis includes:
 
