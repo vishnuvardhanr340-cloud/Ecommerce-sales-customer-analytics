@@ -1,425 +1,207 @@
 # E-Commerce Sales, Customer & Profitability Analytics
 
-## Project Overview
+An end-to-end analytics project that takes raw e-commerce data from **PostgreSQL** through **SQL analysis** and **Python EDA** to a **4-page Power BI dashboard**, answering questions about revenue, profit, products, customers, marketing and delivery operations.
 
-This project is an end-to-end **E-Commerce Sales, Customer & Profitability Analytics** project built to demonstrate practical Data Analyst skills using **PostgreSQL, Python, and Power BI**.
-
-The project analyzes sales performance, customer behavior, product and category performance, profitability, marketing performance, and operational metrics to generate actionable business insights.
-
-### Project Workflow
-
-**Raw Data → PostgreSQL → SQL Analysis → Python EDA → Power BI Dashboard → Business Insights**
+**Tools:** PostgreSQL · SQL (CTEs, window functions, views) · Python (Pandas, NumPy, Matplotlib) · Google Colab · Power BI (Power Query, DAX)
 
 ---
 
-## Business Objectives
+## Project at a glance
 
-The project aims to answer key business questions such as:
+| Metric | Value |
+|---|---|
+| Orders | **138,116** |
+| Customers (placed at least one order) | **24,911** |
+| Net sales | **177.13M** |
+| Total profit | **76.15M** |
+| Profit margin | **42.99%** |
+| Average order value | **1,282.50** |
+| Return rate | **6.85%** |
+| Cancellation rate | **6.08%** |
+| Loss-making orders | **1,296 (0.94%)** |
+| Period covered | January 2021 to December 2025 |
 
-- How much revenue and profit is the business generating?
-- Which products and categories perform best?
-- Who are the highest-value customers?
-- Which customers are repeat customers?
-- Which categories have the highest profitability?
-- Which marketing channels perform best?
-- What are the monthly sales and profit trends?
-- What percentage of orders are returned or cancelled?
-- Which orders or products are loss-making?
-- How is the business performing operationally?
-
----
-
-## Tools & Technologies
-
-- **PostgreSQL** — database management and SQL analysis
-- **SQL** — data cleaning, transformation and business analysis
-- **Python** — exploratory data analysis
-- **Pandas** — data manipulation
-- **NumPy** — numerical analysis
-- **Matplotlib** — data visualization
-- **Google Colab** — Python analysis environment
-- **Power BI** — interactive dashboard and business reporting
-- **GitHub** — project documentation and version control
+*Monetary values are summed as recorded in the `net_sales` and `profit` columns (see [Limitations](#limitations)).*
 
 ---
 
-# Dataset
+## Business questions
 
-The project uses five related datasets:
-
-### 1. E-Commerce Sales Transactions
-
-Contains order-level information including:
-
-- Order details
-- Customer information
-- Sales channel
-- Payment information
-- Shipping information
-- Marketing information
-- Discounts
-- Revenue
-- Product cost
-- Profit
-- Returns
-- Customer reviews
-
-### 2. Order Items
-
-Contains product-level transaction information including:
-
-- Order ID
-- Product ID
-- Quantity
-- Unit price
-- Discount
-- Revenue
-- Product cost
-- Profit
-
-### 3. Product Catalog
-
-Contains product master information including:
-
-- Product name
-- Category
-- Subcategory
-- Brand
-- Supplier
-- Product price
-- Product cost
-- Product rating
-
-### 4. Customer Master
-
-Contains customer-level information including:
-
-- Customer ID
-- Customer name
-- Age
-- Gender
-- Customer segment
-- City
-- State
-- Country
-- Region
-- Customer acquisition cost
-
-### 5. Dataset Statistics
-
-Contains overall dataset-level statistics used to validate the analysis and calculated KPIs.
+1. How much revenue and profit does the business generate, and how do they change over time?
+2. Which product categories and products drive revenue, and which are the most profitable?
+3. Who are the most valuable customers, and how many customers come back?
+4. Which sales channels and marketing channels perform best?
+5. How often are orders returned or cancelled, and why?
+6. How reliable is delivery, and which shipping methods or warehouses fall behind?
+7. Which orders lose money?
 
 ---
 
-# SQL Analysis
-
-The SQL analysis was performed in **PostgreSQL** and organized into the following analysis areas.
-
-## 1. Create Table Query
-
-Database tables were created and populated for:
-
-- Customers
-- Products
-- Orders
-- Order Items
-
-The database structure was designed to support analytical queries across customers, orders and products.
-
----
-
-## 2. Data Quality Checks
-
-Before performing business analysis, the data was checked for:
-
-- Missing values
-- Duplicate records
-- Duplicate order IDs
-- Invalid financial values
-- Invalid delivery values
-- Data consistency
-- Transaction-level anomalies
-
-Data quality checks were performed before using the data for business reporting.
-
----
-
-## 3. Business Performance
-
-The business performance analysis covers:
-
-### Executive KPIs
-
-- Total Revenue
-- Total Profit
-- Profit Margin
-- Total Orders
-- Total Customers
-- Average Order Value
-- Return Rate
-- Cancellation Rate
-
-### Sales Analysis
-
-- Monthly revenue
-- Monthly profit
-- Order volume
-- Yearly performance
-- Running revenue
-- Growth analysis
-- Sales trends
-
-### Profitability Analysis
-
-- Profit by category
-- Profit margin
-- Loss-making transactions
-- Revenue vs profit performance
-
-Window functions and aggregations were also used for ranking and trend analysis.
-
----
-
-## 4. Customer Analysis
-
-Customer analysis focuses on:
-
-- Top customers by revenue
-- Top customers by profit
-- Customer order frequency
-- Repeat customers
-- Average order value
-- Customer profitability
-- Customer segmentation
-- Customer ranking
-- High-value customers
-
-SQL techniques used include:
-
-- `JOIN`
-- `GROUP BY`
-- `HAVING`
-- `CTE`
-- Aggregate functions
-- Window functions
-- Ranking
-- Conditional logic
-
----
-
-## 5. Products and Categories
-
-Product-level analysis includes:
-
-- Top products by revenue
-- Top products by profit
-- Category revenue
-- Category profit
-- Category profit margin
-- Product profitability
-- Product rankings
-- Top products within categories
-- Product performance comparison
-
-The `order_items` and `product_catalog` datasets are used together for detailed product analysis.
-
----
-
-## 6. Views
-
-Reusable SQL views were created to make the analytical results easier to use in Power BI and other reporting tools.
-
-Key analytical views include:
-
-- `vw_monthly_sales`
-- `vw_product_performance`
-- `vw_customer_summary`
-- `vw_marketing_performance`
-- `vw_operations_performance`
-
-These views provide a clean analytical layer between the raw database tables and the reporting/dashboard layer.
-
----
-
-# Python Exploratory Data Analysis
-
-Python is used for deeper exploratory analysis after the SQL analysis.
-
-The Google Colab notebook covers:
-
-1. Data loading
-2. Data validation
-3. Missing-value analysis
-4. Data type validation
-5. KPI calculation
-6. Monthly sales trends
-7. Product analysis
-8. Category analysis
-9. Customer analysis
-10. Marketing analysis
-11. Operations analysis
-12. Return analysis
-13. Profitability analysis
-14. Data visualization
-15. Business insight generation
-
-### Python Libraries
+## Workflow
 
 ```text
-Pandas
-NumPy
-Matplotlib
+Raw CSV data  →  PostgreSQL tables  →  Data-quality checks  →  SQL business analysis
+              →  Reusable SQL views  →  Python EDA (Google Colab)  →  Power BI dashboard  →  Insights
 ```
 
 ---
 
-# Power BI Dashboard
+## Repository structure
 
-The final Power BI dashboard is designed around four major business areas.
+```text
+├── README.md
+├── SQL/
+│   ├── create_table_query.sql        Creates raw_orders, raw_customers, raw_products, raw_order_items
+│   ├── data_quality_checks.sql       Row counts, duplicate IDs, missing fields, invalid values
+│   ├── business_performance.sql      KPIs, monthly trend, category performance, top products
+│   ├── customer_analysis.sql         Customer revenue, repeat customers, profitability, segmentation
+│   ├── products_and_categories.sql   Rankings, MoM / YoY growth, running totals, window functions
+│   └── views.sql                     Five reusable views for reporting
+├── python/
+│   └── Ecommerce_Sales_Customer_Profitability_Analytics.ipynb
+└── screenshots/                      Dashboard page images
+```
 
-**[View / Download the Power BI Dashboard (.pbix)](https://drive.google.com/file/d/1KVkaJftfgMi0CJo_bd4CDpsdIeBGUjL2/view?usp=drive_link)**
+---
 
-## Page 1 — Executive Overview
+## SQL analysis (PostgreSQL)
+
+| File | What it does |
+|---|---|
+| `create_table_query.sql` | Defines the four raw tables (orders has 46 columns). |
+| `data_quality_checks.sql` | Row counts per table, duplicate order IDs, missing key fields, negative sales / profit / quantity, invalid delivery days. |
+| `business_performance.sql` | Executive KPIs, revenue and profit by month, category revenue / profit / margin, profit contribution, top 10 products by revenue and by margin. |
+| `customer_analysis.sql` | Revenue and orders per customer, top customers by revenue and profit, repeat customers, customers with high revenue but low margin, profitability classification and VIP segmentation. |
+| `products_and_categories.sql` | Top products, category share of revenue, month-over-month growth, year-over-year revenue, running totals, ranking products within each category, revenue rank vs profit rank, customer ranking by segment. |
+| `views.sql` | `vw_monthly_sales`, `vw_product_performance`, `vw_customer_summary`, `vw_marketing_performance`, `vw_operations_performance`. |
+
+**Techniques used:** `JOIN`, `GROUP BY`, `HAVING`, subqueries, CTEs, `CASE`, `FILTER`, window functions (`RANK`, `LAG`, running totals), views.
+
+The views form a clean layer between the raw tables and the Power BI dashboard.
+
+---
+
+## Python EDA (Google Colab)
+
+The notebook has 43 cells, 8 charts and saved outputs. It covers:
+
+1. Loading the three CSV files and validating shape and data types
+2. Missing-value analysis
+3. Date preparation and KPI calculation
+4. Data-quality checks
+5. Monthly sales and profit trend
+6. Sales channel and customer segment analysis
+7. Customer analytics and repeat-customer analysis
+8. Product and category analysis
+9. Marketing channel and campaign performance
+10. Returns analysis
+11. Delivery and warehouse performance
+12. Loss-making order analysis
+13. Best and weakest periods and written business insights
+
+To run it, open the notebook in Google Colab and upload the three CSV files when asked.
+
+---
+
+## Key findings
+
+### Overall performance
+- The business generated **177.13M** in net sales and **76.15M** in profit from **138,116** orders and **24,911** customers, a **42.99%** margin.
+- The average order value is **1,282.50**, and the average customer spent about **7,111**.
+
+### Sales trend and seasonality
+- Revenue peaks at year end. **December 2021 was the best month** (4.90M revenue, 1.63M profit, 3,568 orders), about twice a typical January to October 2021 month (average 2.66M).
+- **February 2021 was the weakest month** (1.91M revenue, 0.90M profit, 1,565 orders).
+
+### Products and categories
+- **Electronics is the top category by revenue** (41.15M from 55,784 units and 78 products) but has the **lowest margin of all 15 categories, 34.28%**.
+- Margins are highest in smaller categories: **Grocery 55.14%**, Beauty & Personal Care 52.32%, Books & Media 51.94%.
+- The top product by revenue is *Xiaomi Self-enabling exuding productivity Gaming Consoles* (0.96M revenue, 743 units, 33.00% margin).
+
+### Customers
+- **Consumer** is the largest segment (54.9% of revenue, 13,585 customers, 44.05% margin), followed by Premium (25.0%), VIP (10.1%) and Business (10.0%).
+- **97.90% of customers are repeat customers** (24,387 customers with more than one order), and only 524 (2.10%) bought once.
+- The highest-revenue customer is **Dylan Clark** (30,268 revenue, 15 orders, 39.05% margin).
+
+### Sales channels and marketing
+- **Mobile App** is the biggest sales channel (70.83M, 40.0% of revenue), then Website (61.85M), Marketplace (26.70M) and Social Media (17.75M).
+- **Organic Search** is the top marketing channel (35.66M, 27,742 orders), followed by Google Ads (26.54M) and Direct (26.12M).
+- Margins are almost identical across channels and campaigns (about 42.5% to 43.2%), so channel performance differs mainly by volume.
+- **60.26% of orders have no campaign recorded**, and a further 16.64% fall under "Default_Campaign".
+
+### Returns and operations
+- **9,462 orders were returned (6.85%)**, spread evenly across eight reasons (1,138 to 1,237 each). **Wrong, damaged or defective product accounts for 37.5%** of returns.
+- Delivery status: **62.93% on time**, 12.23% delayed, 7.06% early, 17.78% cancelled (see [definitions](#metric-definitions)).
+- Every shipping method runs slightly **slower than its estimate**, by 0.24 to 0.33 days (Same Day: 0.82 actual vs 0.49 estimated; Standard: 5.25 vs 5.00).
+- The 19 warehouses are similar, averaging 4.47 to 4.66 delivery days (WH-019 is slowest).
+
+### Loss-making orders
+- **1,296 orders (0.94%) lose money**, generating 1.78M in revenue and a **0.20M loss**. **Social Media has the highest loss-making share (1.05%)**.
+
+---
+
+## Power BI dashboard
+
+**[Download the Power BI file (.pbix)](https://drive.google.com/file/d/1KVkaJftfgMi0CJo_bd4CDpsdIeBGUjL2/view?usp=drive_link)**
+
+### Page 1: Executive Overview
+KPI cards (revenue, profit, margin, orders, customers, average order value), revenue vs profit by category, top 10 products by revenue, monthly revenue trend and a date filter.
 
 ![Executive Overview dashboard page](screenshots/01_executive_overview.png)
 
-Key metrics:
-
-- Revenue
-- Profit
-- Profit Margin
-- Orders
-- Customers
-- AOV
-- Return Rate
-- Cancellation Rate
-
-Visuals:
-
-- Revenue trend
-- Profit trend
-- KPI cards
-- Sales channel performance
-- Category performance
-
----
-
-## Page 2 — Sales & Product Analytics
+### Page 2: Sales & Product Analytics
+Units sold (842K), total discount, product profit %, revenue and profit margin by category, a category table, top and bottom 10 products, and discount rate vs revenue by category, with a category selector.
 
 ![Sales and Product Analytics dashboard page](screenshots/02_sales_products_analytics.png)
 
-Analysis includes:
-
-- Category revenue
-- Category profit
-- Product revenue
-- Product profitability
-- Top products
-- Monthly sales trends
-
----
-
-## Page 3 — Customer Analytics
+### Page 3: Customer Analytics
+Total and repeat customers, repeat-customer rate, average revenue per customer, customers by segment and region, revenue by segment, top customers, and revenue vs profit margin for the top 20 customers.
 
 ![Customer Analytics dashboard page](screenshots/03_customer_analytics.png)
 
-Analysis includes:
-
-- Customer segments
-- Top customers
-- Customer revenue
-- Customer profit
-- Repeat customers
-- Customer order frequency
-
----
-
-## Page 4 — Marketing & Operations
+### Page 4: Marketing & Operations
+Return and cancellation rates, average delivery days, revenue by marketing channel, profit by campaign, returns by reason, delivery performance by shipping method and warehouse, and delivery status.
 
 ![Marketing and Operations Analytics dashboard page](screenshots/04_marketing_operations.png)
 
-Analysis includes:
+---
 
-- Marketing channel performance
-- Campaign performance
-- Returns
-- Return reasons
-- Delivery performance
-- Shipping methods
-- Warehouse performance
+## Metric definitions
+
+| Metric | Definition |
+|---|---|
+| Net sales | Sum of `net_sales` in the orders table |
+| Profit margin | Total profit ÷ net sales × 100 |
+| Average order value | Net sales ÷ distinct orders |
+| Repeat customer | A customer with more than one distinct order |
+| Return rate | Returned orders ÷ total orders |
+| Cancellation rate | Orders with a cancelled order status ÷ total orders |
+| Loss-making order | An order with negative profit |
+| Delivery status | A separate field from order status: On Time, Delayed, Early or Cancelled |
+| Category and product figures | Calculated from `order_items`, so their totals (192.40M revenue, 82.70M profit, 42.98% margin) are higher than the order-level totals above |
 
 ---
 
-# Key Skills Demonstrated
+## Limitations
 
-### SQL
-
-- SELECT
-- WHERE
-- GROUP BY
-- HAVING
-- JOINs
-- Subqueries
-- CTEs
-- Aggregate functions
-- CASE statements
-- Window functions
-- `LAG()`
-- `RANK()`
-- Running totals
-- Views
-- Data quality validation
-
-### Python
-
-- Pandas
-- NumPy
-- Data cleaning
-- Exploratory Data Analysis
-- Aggregation
-- Grouping
-- Time-series analysis
-- Data visualization
-
-### Power BI
-
-- Power Query
-- Data modeling
-- DAX
-- KPI development
-- Interactive dashboards
-- Business reporting
+- **Synthetic data:** results show how the analysis works, not real customer behaviour.
+- **No currency conversion:** the orders table has a `currency` column, and revenue is summed as recorded without conversion.
+- **Order-level and item-level totals differ** (177.13M vs 192.40M net sales), so category and product figures should not be added to the headline KPIs.
+- **Uniform margins** across channels and campaigns limit what the marketing analysis can say about profitability.
+- **Campaign data is incomplete:** most orders have no campaign recorded.
 
 ---
 
-# Business Insights
+## Skills demonstrated
 
-The project is designed to identify:
+- **SQL:** joins, aggregations, subqueries, CTEs, window functions, views, data-quality validation
+- **Python:** Pandas, NumPy, Matplotlib, data cleaning, KPI calculation, EDA, business-insight writing
+- **Power BI:** data modelling, DAX measures, KPI cards, interactive multi-page dashboards
+- **Analysis:** profitability, customer segmentation, marketing and operations reporting
 
-- Revenue and profit trends
-- Highest-performing products
-- Highest-performing categories
-- Most valuable customers
-- Customer purchasing behavior
-- Marketing channel effectiveness
-- Return patterns
-- Operational performance
-- Loss-making transactions
+---
 
-This project demonstrates an end-to-end Data Analyst workflow:
+## Author
 
-```text
-Raw E-Commerce Data
-        ↓
-PostgreSQL Database
-        ↓
-Data Quality Checks
-        ↓
-SQL Business Analysis
-        ↓
-Python Exploratory Data Analysis
-        ↓
-Business Insights
-        ↓
-Power BI Dashboard
-```
+**Vishnuvardhan R** · Bengaluru, India
+[LinkedIn](https://www.linkedin.com/in/vishnuvardhanr05/) · [GitHub](https://github.com/vishnuvardhanr340-cloud)
