@@ -1,6 +1,6 @@
 # E-Commerce Sales, Customer & Profitability Analytics
 
-##  Project Overview
+## Project Overview
 
 This project is an end-to-end **E-Commerce Sales, Customer & Profitability Analytics** project built to demonstrate practical Data Analyst skills using **PostgreSQL, Python, and Power BI**.
 
@@ -12,7 +12,7 @@ The project analyzes sales performance, customer behavior, product and category 
 
 ---
 
-##  Business Objectives
+## Business Objectives
 
 The project aims to answer key business questions such as:
 
@@ -29,7 +29,7 @@ The project aims to answer key business questions such as:
 
 ---
 
-##  Tools & Technologies
+## Tools & Technologies
 
 - **PostgreSQL** — database management and SQL analysis
 - **SQL** — data cleaning, transformation and business analysis
@@ -43,7 +43,7 @@ The project aims to answer key business questions such as:
 
 ---
 
-#  Dataset
+# Dataset
 
 The project uses five related datasets:
 
@@ -111,7 +111,7 @@ Contains overall dataset-level statistics used to validate the analysis and calc
 
 ---
 
-#  SQL Analysis
+# SQL Analysis
 
 The SQL analysis was performed in **PostgreSQL** and organized into the following analysis areas.
 
@@ -241,7 +241,7 @@ These views provide a clean analytical layer between the raw database tables and
 
 ---
 
-#  Python Exploratory Data Analysis
+# Python Exploratory Data Analysis
 
 Python is used for deeper exploratory analysis after the SQL analysis.
 
@@ -273,9 +273,11 @@ Matplotlib
 
 ---
 
-# 📊 Power BI Dashboard
+# Power BI Dashboard
 
 The final Power BI dashboard is designed around four major business areas.
+
+**[View / Download the Power BI Dashboard (.pbix)](https://drive.google.com/file/d/1KVkaJftfgMi0CJo_bd4CDpsdIeBGUjL2/view?usp=drive_link)**
 
 ## Page 1 — Executive Overview
 
@@ -340,7 +342,7 @@ Analysis includes:
 
 ---
 
-# 📈 Key Skills Demonstrated
+# Key Skills Demonstrated
 
 ### SQL
 
@@ -382,7 +384,7 @@ Analysis includes:
 
 ---
 
-# 💡 Business Insights
+# Business Insights
 
 The project is designed to identify:
 
@@ -395,7 +397,6 @@ The project is designed to identify:
 - Return patterns
 - Operational performance
 - Loss-making transactions
-
 
 This project demonstrates an end-to-end Data Analyst workflow:
 
@@ -414,6 +415,3 @@ Business Insights
         ↓
 Power BI Dashboard
 ```
-
-
-
